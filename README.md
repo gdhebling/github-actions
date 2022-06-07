@@ -5,7 +5,7 @@
   Add your open source license, GitHub uses Creative Commons Attribution 4.0 International.
 -->
 
-# Hello GitHub Actions
+# Hello GitHub Actions ✌️
 
 _Create a GitHub Action and use it in a workflow._
 
@@ -55,13 +55,13 @@ _Welcome to "Hello GitHub Actions"! :wave:_
 
 **What is _GitHub Actions_?**: GitHub Actions is a flexible way to automate nearly every aspect of your team's software workflow. You can automate testing, continuously deploy, review code, manage issues and pull requests, and much more. The best part, these workflows are stored as code in your repository and easily shared and reused across teams. To learn more, check out these resources:
 
--  The GitHub Actions feature page, see  [GitHub Actions](https://github.com/features/actions).
--  The "GitHub Actions" user documentation, see [GitHub Actions](https://docs.github.com/actions).
+-   The GitHub Actions feature page, see [GitHub Actions](https://github.com/features/actions).
+-   The "GitHub Actions" user documentation, see [GitHub Actions](https://docs.github.com/actions).
 
-**What is a _workflow_?**: A workflow is a configurable automated process that will run one or more jobs. Workflows are defined in special files in the `.github/workflows` directory and they execute based on your chosen event. For this exercise, we'll use a `push` event. 
+**What is a _workflow_?**: A workflow is a configurable automated process that will run one or more jobs. Workflows are defined in special files in the `.github/workflows` directory and they execute based on your chosen event. For this exercise, we'll use a `push` event.
 
-- To read more about workflows, jobs, and events, see "[Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)".
-- If you want to learn more about the `push` event before using it, see "[push](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#push)".
+-   To read more about workflows, jobs, and events, see "[Understanding GitHub Actions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions)".
+-   If you want to learn more about the `push` event before using it, see "[push](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads#push)".
 
 To get you started, we used actions to go ahead and made a branch and pull request for you.
 
@@ -69,16 +69,16 @@ To get you started, we used actions to go ahead and made a branch and pull reque
 
 1. Open a new browser tab, and navigate to this same repository. Then, work on the steps in your second tab while you read the instructions in this tab.
 1. Navigate to the **Code** tab.
-2. From the **main** branch dropdown, click on the **emoji-workflow** branch.
-3. Navigate to the `.github/workflows/` folder, then select **Add file** and click on **Create new file**.
-4. In the **Name your file...** field, enter `emoji.yml`.
+1. From the **main** branch dropdown, click on the **emoji-workflow** branch.
+1. Navigate to the `.github/workflows/` folder, then select **Add file** and click on **Create new file**.
+1. In the **Name your file...** field, enter `emoji.yml`.
 1. Add the following content to the `emoji.yml` file:
-   ```yaml
-   name: Check emoji shortcode
-   on: push
-   ```
-2. To commit your changes, click **Commit new file**.
-3. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
+    ```yaml
+    name: Check emoji shortcode
+    on: push
+    ```
+1. To commit your changes, click **Commit new file**.
+1. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
 
 </details>
 
@@ -96,8 +96,8 @@ _Nice work! :tada: You added a workflow file!_
 
 Here's what it means:
 
-- `name: A workflow for my Hello World file` gives your workflow a name. This name appears on any pull request or in the Actions tab of your repository.
-- `on: push` indicates that your workflow will execute anytime code is pushed to your repository.
+-   `name: A workflow for my Hello World file` gives your workflow a name. This name appears on any pull request or in the Actions tab of your repository.
+-   `on: push` indicates that your workflow will execute anytime code is pushed to your repository.
 
 Next, we need to specify jobs to run.
 
@@ -107,16 +107,16 @@ In this step of our exercise, we will add a "build" job. We will specify `ubuntu
 
 ### :keyboard: Activity: Add a job to your workflow file
 
-1. Open your `emoji.yml` file. 
+1. Open your `emoji.yml` file.
 2. Update the contents of the file to:
-   ```yaml
-   name: Check emoji shortcode
-   on: push
-   jobs:
-     build:
-       name: Check emoji shortcode
-       runs-on: ubuntu-latest
-   ```
+    ```yaml
+    name: Check emoji shortcode
+    on: push
+    jobs:
+        build:
+            name: Check emoji shortcode
+            runs-on: ubuntu-latest
+    ```
 3. Click **Start commit** in the top right of the workflow editor.
 4. Type your commit message and commit your changes directly to your branch.
 5. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
@@ -139,6 +139,7 @@ Workflows have jobs, and jobs have steps. So now we'll add steps to your workflo
 **What are _steps_?**: Actions steps will run during our job in order. Each step is either a shell script that will be executed, or an action that will be run. Each step must pass for the next step to run. Actions steps can be used from within the same repository, from any other public repository, or from a published Docker container image.
 
 In our action, we will have steps for each of the following:
+
 1. Checkout the code with `git checkout`, using a [pre-built checkout action](https://github.com/actions/checkout).
 2. Run a [bash](https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29) script to check Markdown files.
 3. Fail with (`exit 1`) if any Markdown file contains an emoji without using [emoji shortcodes](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md).
@@ -147,22 +148,22 @@ In our action, we will have steps for each of the following:
 
 1. Open your `emoji.yml` file.
 2. Update the contents of the file to:
-   ```yaml
-   name: Check emoji shortcode
-   on: push
-   jobs:
-     build:
-       name: Check emoji shortcode
-       runs-on: ubuntu-latest
-       steps:
-         - uses: actions/checkout@v2
-         - run: |
-             if LC_ALL=C grep -R '[^ -~]' *.md; then
-               echo "Use emoji shortcodes instead!"
-               echo "See https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md"
-               exit 1
-             fi
-   ```
+    ```yaml
+    name: Check emoji shortcode
+    on: push
+    jobs:
+        build:
+            name: Check emoji shortcode
+            runs-on: ubuntu-latest
+            steps:
+                - uses: actions/checkout@v2
+                - run: |
+                      if LC_ALL=C grep -R '[^ -~]' *.md; then
+                        echo "Use emoji shortcodes instead!"
+                        echo "See https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md"
+                        exit 1
+                      fi
+    ```
 3. Click **Start commit** in the top right of the workflow editor.
 4. Type your commit message and commit your changes directly to your branch.
 5. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
@@ -213,9 +214,9 @@ Your new action will run any time a new commit is created or pushed to the remot
 
 1. Make a new branch named `test-workflow`.
 1. Commit any change to your branch, such as adding an emoji to your README.md file. If you want to see what happens if an action fails, add an emoji without using shortcode.
-2. View the pull request on your branch.
-3. See your action run on your pull request.
-4. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
+1. View the pull request on your branch.
+1. See your action run on your pull request.
+1. Wait about 20 seconds for actions to run, then refresh this page (the one you're following instructions from) and an action will automatically close this step and open the next one.
 
 </details>
 
@@ -233,19 +234,19 @@ _Congratulations friend, you've completed this course!_
 
 Here's a recap of all the tasks you've accomplished in your repository:
 
-- You've created your first GitHub Actions workflow file.
-- You learned where to make your workflow file.
-- You created an event trigger, a job, and steps for your workflow.
-- You're ready to automate anything you can dream of.
+-   You've created your first GitHub Actions workflow file.
+-   You learned where to make your workflow file.
+-   You created an event trigger, a job, and steps for your workflow.
+-   You're ready to automate anything you can dream of.
 
 ### What's next?
 
-- Learn more about GitHub Actions by reading "[Learn GitHub Actions](https://docs.github.com/actions/learn-github-actions)".
-- Use actions created by others in [awesome-actions](https://github.com/sdras/awesome-actions).
-- We'd love to hear what you thought of this course [in our discussion board](https://github.com/skills/.github/discussions).
-- [Take another GitHub Skills course](https://github.com/skills).
-- Learn more about GitHub by reading the "[Get started](https://docs.github.com/get-started)" docs.
-- To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
+-   Learn more about GitHub Actions by reading "[Learn GitHub Actions](https://docs.github.com/actions/learn-github-actions)".
+-   Use actions created by others in [awesome-actions](https://github.com/sdras/awesome-actions).
+-   We'd love to hear what you thought of this course [in our discussion board](https://github.com/skills/.github/discussions).
+-   [Take another GitHub Skills course](https://github.com/skills).
+-   Learn more about GitHub by reading the "[Get started](https://docs.github.com/get-started)" docs.
+-   To find projects to contribute to, check out [GitHub Explore](https://github.com/explore).
 
 </details>
 
